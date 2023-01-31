@@ -23,6 +23,7 @@ function Tipo({
   const [cookie, setCookie, removeCookie] = useCookies();
   const [listUpdate, setListUpdate] = useState<Array<any>>([]);
   const [hidden, setHidden] = useState(true);
+  const {value, setValue} = useGlobalContext();
 
   useEffect(() => {
     setHidden(closedCart);
@@ -35,13 +36,13 @@ function Tipo({
   };
 
   const dataOfChild = (dataChild: any) => {
+
     if (cookie.products === undefined) {
       cookie.products = [];
     }
     if (
       listUpdate.length === 0 ||
-      (!Array.isArray(listUpdate) &&
-        (cookie.products !== undefined || cookie.products !== ""))
+      (!Array.isArray(listUpdate))
     ) {
       setListUpdate((listUpdate: any) => [
         ...cookie.products,
@@ -90,7 +91,6 @@ function Tipo({
       removeCookie("products");
     }
   };
-  const {value, setValue} = useGlobalContext();
   //console.log("COUNT => ",listUpdate.length);
 
   const lista = listUpdate.map((obj: any, index: any) => (
@@ -112,9 +112,11 @@ function Tipo({
 
   useEffect(() => {
     cookies.set("products", JSON.stringify(listUpdate), { path: "/" });
-    setValue(listUpdate.length)
-  }, [dataOfChild]);
+    setValue(listUpdate.length);
+  }, [listUpdate]);
 
+  console.log("COOKIE PRODUCTS => ",cookie.product)
+  console.log("LIST UPDATE => ", listUpdate)
 
   return (
     <>

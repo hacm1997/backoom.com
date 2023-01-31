@@ -8,7 +8,7 @@ import {useGlobalContext} from "../../../content/context/global_var";
 
 function Navbar({setClosedCart, closedCart}: any) {
     const router = useRouter();
-    //const {countMarket} = useGlobalContext();
+
     const [cookies, setCookie, removeCookie] = useCookies();
     const [state, setState] = useState<{ icon: any; menu: any }>({
         icon: "bx bx-menu-alt-right",
@@ -68,7 +68,7 @@ function Navbar({setClosedCart, closedCart}: any) {
     }, [cookies]);
 
 
-    console.log("GLOBAL MARKET => ",value);
+    console.log("GLOBAL COUNT MARKET => ",value);
     return (
         <>
             <nav>
@@ -221,14 +221,23 @@ function Navbar({setClosedCart, closedCart}: any) {
                                 <li style={blogBtnStyle}>{navbar.blog.name}</li>
                             </Link>
 
-                            {/*router.pathname != "/" && router.pathname != "/cotizar" && router.pathname != "/blog" && ()*/}
+                            {router.asPath === "/" || router.asPath === "/cotizar" || router.asPath === "/blog" ?
+                                <Link href="/cotizar">
+                                    <li className={styles.carrito}>
+                                        <a>
+                                            <span className={styles.cantidad}>{value ? value : cookies.productscopy ? cookies.productscopy.length : 0}</span>
+                                            <i className="bx bx-cart-alt"></i>
+                                        </a>
+                                    </li>
+                                </Link>
+                            :
                                 <li className={styles.carrito}>
-                                    <a href="#carrito" onClick={() => setClosedCart(false)}>
-                                        <span className={styles.cantidad}>{value}</span>
+                                        <a href="#carrito" onClick={() => setClosedCart(false)}>
+                                        <span className={styles.cantidad}>{value ? value : cookies.productscopy ? cookies.productscopy.length : 0}</span>
                                         <i className="bx bx-cart-alt"></i>
                                     </a>
                                 </li>
-
+                            }
                         </ul>
                     </div>
                     <div className={styles.boton}>

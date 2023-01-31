@@ -2,7 +2,8 @@ import styles from "./styles.module.css";
 import React, {useState} from "react";
 
 export default function Card_producto(props: any) {
-    
+
+    //console.log(props.products);
     const list_products = props.products.map((item:any)=>(
         <li>{item}</li>
     ))

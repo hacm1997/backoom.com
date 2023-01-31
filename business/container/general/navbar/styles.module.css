@@ -27,6 +27,14 @@
     position: relative;
 }
 
+.carrito i{
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.carrito span{
+    color: #FFFFFF;
+}
+
 .cantidad {
     position: absolute;
     top: -20px;

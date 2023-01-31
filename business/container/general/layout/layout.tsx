@@ -8,15 +8,24 @@ import moment from "moment/moment";
 import ProgressBar from "react-progressbar-on-scroll";
 import common from "../../../../services/common.json";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import {MyGlobalContext, useGlobalContext} from "../../../content/context/global_var";
+import {Cookies, useCookies} from "react-cookie";
 
 moment.locale("es");
 
 export default function Layout({children, setClosedCart}: any) {
+    const cookies = new Cookies();
+    const [cookie, setCookie, removeCookie] = useCookies();
     const data: any = common.headData;
     const [market, setMarket] = useState(0);
     //const { countMarket, setCountMarket } = useGlobalContext()
-    const [value, setValue] = useState(0);
+    useEffect(()=>{
+        if(cookie.products){
+            if(cookie.products.length > 1){
+                cookies.set("productscopy", cookie.products, { path: "/" });
+            }
+        }
+        console.log(cookie.products)
+    }, [cookie.products]);
 
     return (
         <>
@@ -53,11 +62,10 @@ export default function Layout({children, setClosedCart}: any) {
                     />
                 </div>
 
-                <MyGlobalContext.Provider value={{value, setValue}}>
-                    <NavBar setClosedCart={setClosedCart}/>
+                <NavBar setClosedCart={setClosedCart}/>
 
-                    {children}
-                </MyGlobalContext.Provider>
+                {children}
+
                 <Footer/>
             </div>
         </>
