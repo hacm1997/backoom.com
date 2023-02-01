@@ -213,30 +213,34 @@ function Navbar({setClosedCart, closedCart}: any) {
                                     </Link>
                                 </div>
                             </div>
+                            {value || cookies.productscopy ? value === 0  && cookies.productscopy.length === 0 ? null :
                             <Link href={navbar.cotizar.url}>
                                 <li style={priceBtnStyle}>{navbar.cotizar.name}</li>
                             </Link>
+                            : null}
                             <Link href={navbar.blog.url}>
                                 <li style={blogBtnStyle}>{navbar.blog.name}</li>
                             </Link>
 
-                            {router.asPath === "/" || router.asPath === "/cotizar" || router.asPath === "/blog" ?
-                                <Link href="/cotizar">
+                            {value || cookies.productscopy ? value === 0  && cookies.productscopy.length === 0 ? null :
+                                router.asPath === "/" || router.asPath === "/cotizar" || router.asPath === "/blog" ?
+                                    <Link href="/cotizar">
+                                        <li className={styles.carrito}>
+                                            <a>
+                                                <span className={styles.cantidad}>{value ? value : cookies.productscopy ? cookies.productscopy.length : 0}</span>
+                                                <i className="bx bx-cart-alt"></i>
+                                            </a>
+                                        </li>
+                                    </Link>
+                                :
                                     <li className={styles.carrito}>
-                                        <a>
+                                            <a href="#carrito" onClick={() => setClosedCart(false)}>
                                             <span className={styles.cantidad}>{value ? value : cookies.productscopy ? cookies.productscopy.length : 0}</span>
                                             <i className="bx bx-cart-alt"></i>
                                         </a>
                                     </li>
-                                </Link>
-                            :
-                                <li className={styles.carrito}>
-                                        <a href="#carrito" onClick={() => setClosedCart(false)}>
-                                        <span className={styles.cantidad}>{value ? value : cookies.productscopy ? cookies.productscopy.length : 0}</span>
-                                        <i className="bx bx-cart-alt"></i>
-                                    </a>
-                                </li>
-                            }
+
+                            : null}
                         </ul>
                     </div>
                     <div className={styles.boton}>

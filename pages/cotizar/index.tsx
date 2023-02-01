@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       <Head>
         <meta
           name="description"
-          content="En Skapate Hookah Bar podrás vivir una rumba a otro nivel, un espacio exclusivo, con música crossover, espectáculos de soñar y vivir una experiencia fusionada entre sonrisas, fiesta y mucho sabor que elevarán tus sentidos."
+          content="En Backoom."
         />
       </Head>
       <Layout>
