@@ -16,6 +16,7 @@ const Home: NextPage = () => {
     removeCookie("title");
     if (cookie.send) {
       removeCookie("products");
+      removeCookie("productscopy");
       removeCookie("send");
     }
     setShowChild(true);
