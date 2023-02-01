@@ -24,7 +24,7 @@ export default function Layout({children, setClosedCart}: any) {
                 cookies.set("productscopy", cookie.products, { path: "/" });
             }
         }
-        console.log(cookie.products)
+        //console.log(cookie.products)
     }, [cookie.products]);
 
     return (

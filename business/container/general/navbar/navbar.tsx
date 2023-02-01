@@ -67,8 +67,7 @@ function Navbar({setClosedCart, closedCart}: any) {
         setMarket(cookies.products);
     }, [cookies]);
 
-
-    console.log("GLOBAL COUNT MARKET => ",value);
+    //console.log("GLOBAL COUNT MARKET => ",value);
     return (
         <>
             <nav>

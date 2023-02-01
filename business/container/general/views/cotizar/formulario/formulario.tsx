@@ -21,8 +21,6 @@ function Formulario(props: any) {
     setProductContact({ ...productContact, [e.target.name]: e.target.value });
   };
 
-
-
   const deleteCookie = () => {
     cookie.set("send", true, { path: "/" });
     setHidden(false)
@@ -36,7 +34,7 @@ function Formulario(props: any) {
   useEffect(() => {
     setAltCookie(['']);
     // @ts-ignore
-    if (!productContact.id || !productContact.name || !productContact.idNumber || !productContact.email || !productContact.phone) {
+    if (!productContact.id || !productContact.name || !productContact.email || productContact.phone.length < 7 || productContact.idNumber.length < 7) {
       setHiddenBtn(true)
     } else {
       setHiddenBtn(false)
@@ -94,7 +92,7 @@ function Formulario(props: any) {
 
             <input
               name="idNumber"
-              type="text"
+              type="number"
               placeholder={contact.idInputNumber}
               onChange={handleChange}
               required
@@ -109,7 +107,7 @@ function Formulario(props: any) {
           />
           <input
             name="phone"
-            type="text"
+            type="number"
             placeholder={contact.inputTelCel}
             onChange={handleChange}
             required
